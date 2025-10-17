@@ -10,6 +10,10 @@ function isValidEvent(event) {
   if (isNaN(eventDate.getTime())) {
     return { valid: false, message: "Invalid date format" };
   }
+  // Disallow events scheduled in the past
+  if (eventDate.getTime() < now.getTime()) {
+    return { valid: false, message: "Event date cannot be in the past" };
+  }
    
 
   return { valid: true, message: "Event is valid" };
